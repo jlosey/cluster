@@ -17,17 +17,19 @@ for line in f:
 
 f.close()
 coord = np.asarray(cols)
-coordFr = coord[6000:7000]
+coordFr = coord[1000:2000]
 #print coord[1000]
 scr = []
 neighb = []
 #Run DBSCAN clustering algorithm for first dump
 hdb = hdbscan.HDBSCAN(min_cluster_size=12).fit(coordFr)
 hdb_labels = hdb.labels_
-metrics = hdb.dist_metrics_
+prob = hdb.cluster_persistence_
+mr,cd = hdbscan.validity.all_points_mutual_reachability(coordFr,hdb_labels,0,metric='euclidean')
+#metrics = hdb.dist_metrics_
 index0 = np.where(hdb_labels==0)
 #hierarchy = clusterer.cluster_hierarchy_
-print set(hdb_labels)
+print len(mr),index0
 fig = plt.figure(1, figsize=(8, 6))
 plt.clf()
 ax = Axes3D(fig, rect=[0, 0, .95, 1], elev=48, azim=134)
