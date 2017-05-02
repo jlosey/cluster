@@ -8,7 +8,7 @@ from mpl_toolkits.mplot3d import Axes3D
 
 #Read in cluster data
 cols = [] 
-f = open('lj-rho-0.4.temp-1.0.xyz','r')
+f = open('../outputFiles/lj-rho-0.4.temp-1.0.xyz','r')
 for line in f:
  	li=line.strip()
 	if not li.startswith("1000") and not li.startswith("Atoms"):
